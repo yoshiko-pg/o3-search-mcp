@@ -2,6 +2,10 @@
 
 An MCP (Model Context Protocol) server that provides web search capabilities using OpenAI's o3 model. The `o3-search` tool accepts text queries and returns AI-powered search results.
 
+<a href="https://glama.ai/mcp/servers/@yoshiko-pg/o3-search-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@yoshiko-pg/o3-search-mcp/badge" alt="o3-search MCP server" />
+</a>
+
 ## Installation
 
 ### Using npx (Recommended)
