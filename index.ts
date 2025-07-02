@@ -13,6 +13,7 @@ const server = new McpServer({
 // Initialize OpenAI client
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
+  baseURL: process.env.OPENAI_BASE_URL,
 });
 
 // Configuration from environment variables
