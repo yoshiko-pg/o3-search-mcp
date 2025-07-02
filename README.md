@@ -17,6 +17,7 @@ $ claude mcp add o3 -s user \
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
+	-e OPENAI_BASE_URL=https://your-custom-endpoint.com/v1 \
 	-- npx o3-search-mcp
 ```
 
@@ -32,7 +33,9 @@ json:
         "OPENAI_API_KEY": "your-api-key",
         // Optional: low, medium, high (default: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
-        "REASONING_EFFORT": "medium"
+        "REASONING_EFFORT": "medium",
+        // Optional: custom OpenAI API base URL for enterprise servers
+        "OPENAI_BASE_URL": "https://your-custom-endpoint.com/v1"
       }
     }
   }
@@ -58,6 +61,7 @@ $ claude mcp add o3 -s user \
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
+	-e OPENAI_BASE_URL=https://your-custom-endpoint.com/v1 \
 	-- node /path/to/o3-search-mcp/build/index.js
 ```
 
@@ -73,7 +77,9 @@ json:
         "OPENAI_API_KEY": "your-api-key",
         // Optional: low, medium, high (default: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
-        "REASONING_EFFORT": "medium"
+        "REASONING_EFFORT": "medium",
+        // Optional: custom OpenAI API base URL for enterprise servers
+        "OPENAI_BASE_URL": "https://your-custom-endpoint.com/v1"
       }
     }
   }
