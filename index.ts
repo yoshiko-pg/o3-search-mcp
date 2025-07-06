@@ -33,9 +33,6 @@ server.tool(
   { input: z.string().describe('Ask questions, search for information, or consult about complex problems in English.'), },
   async ({ input }) => {
     try {
-      // デバッグログ（オプション）
-      console.error(`[o3-search] Request started with timeout: ${config.timeout}ms, maxRetries: ${config.maxRetries}`);
-      
       const response = await openai.responses.create({
         model: 'o3',
         input,
@@ -55,25 +52,11 @@ server.tool(
       };
     } catch (error) {
       console.error("Error calling OpenAI API:", error);
-      
-      // エラーの種類に応じたメッセージ
-      let errorMessage = "An error occurred while processing your request.";
-      
-      if (error instanceof OpenAI.APIError) {
-        if (error.status === 429) {
-          errorMessage = "Rate limit exceeded. The request was retried but still failed. Please try again later.";
-        } else if (error.status && error.status >= 500) {
-          errorMessage = "OpenAI service is temporarily unavailable. Please try again later.";
-        }
-      } else if (error instanceof OpenAI.APIConnectionTimeoutError) {
-        errorMessage = "Request timed out. Please try again with a simpler query.";
-      }
-      
       return {
         content: [
           {
             type: "text",
-            text: `Error: ${errorMessage}`,
+            text: `Error: ${error instanceof Error ? error.message : "Unknown error occurred"}`,
           },
         ],
       };
