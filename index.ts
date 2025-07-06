@@ -10,14 +10,21 @@ const server = new McpServer({
   version: "0.0.1",
 });
 
-// Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 // Configuration from environment variables
-const searchContextSize = (process.env.SEARCH_CONTEXT_SIZE || 'medium') as 'low' | 'medium' | 'high';
-const reasoningEffort = (process.env.REASONING_EFFORT || 'medium') as 'low' | 'medium' | 'high';
+const config = {
+  apiKey: process.env.OPENAI_API_KEY,
+  maxRetries: parseInt(process.env.OPENAI_MAX_RETRIES || '3'),
+  timeout: parseInt(process.env.OPENAI_API_TIMEOUT || '60000'),
+  searchContextSize: (process.env.SEARCH_CONTEXT_SIZE || 'medium') as 'low' | 'medium' | 'high',
+  reasoningEffort: (process.env.REASONING_EFFORT || 'medium') as 'low' | 'medium' | 'high',
+};
+
+// Initialize OpenAI client with retry and timeout configuration
+const openai = new OpenAI({
+  apiKey: config.apiKey,
+  maxRetries: config.maxRetries,
+  timeout: config.timeout,
+});
 
 // Define the o3-search tool
 server.tool(
@@ -26,13 +33,16 @@ server.tool(
   { input: z.string().describe('Ask questions, search for information, or consult about complex problems in English.'), },
   async ({ input }) => {
     try {
+      // デバッグログ（オプション）
+      console.error(`[o3-search] Request started with timeout: ${config.timeout}ms, maxRetries: ${config.maxRetries}`);
+      
       const response = await openai.responses.create({
         model: 'o3',
         input,
-        tools: [{ type: 'web_search_preview', search_context_size: searchContextSize }],
+        tools: [{ type: 'web_search_preview', search_context_size: config.searchContextSize }],
         tool_choice: 'auto',
         parallel_tool_calls: true,
-        reasoning: { effort: reasoningEffort },
+        reasoning: { effort: config.reasoningEffort },
       })
 
       return {
@@ -45,11 +55,25 @@ server.tool(
       };
     } catch (error) {
       console.error("Error calling OpenAI API:", error);
+      
+      // エラーの種類に応じたメッセージ
+      let errorMessage = "An error occurred while processing your request.";
+      
+      if (error instanceof OpenAI.APIError) {
+        if (error.status === 429) {
+          errorMessage = "Rate limit exceeded. The request was retried but still failed. Please try again later.";
+        } else if (error.status && error.status >= 500) {
+          errorMessage = "OpenAI service is temporarily unavailable. Please try again later.";
+        }
+      } else if (error instanceof OpenAI.APIConnectionTimeoutError) {
+        errorMessage = "Request timed out. Please try again with a simpler query.";
+      }
+      
       return {
         content: [
           {
             type: "text",
-            text: `Error: ${error instanceof Error ? error.message : "Unknown error occurred"}`,
+            text: `Error: ${errorMessage}`,
           },
         ],
       };
