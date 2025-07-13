@@ -33,14 +33,21 @@ server.tool(
   { input: z.string().describe('Ask questions, search for information, or consult about complex problems in English.'), },
   async ({ input }) => {
     try {
-      const response = await openai.responses.create({
+      let response = await openai.responses.create({
         model: 'o3',
         input,
         tools: [{ type: 'web_search_preview', search_context_size: config.searchContextSize }],
         tool_choice: 'auto',
         parallel_tool_calls: true,
         reasoning: { effort: config.reasoningEffort },
+        background: true,
       })
+
+      while (response.status === "queued" || response.status === "in_progress") {
+        console.log("Current status: " + response.status);
+        await new Promise(resolve => setTimeout(resolve, 2000)); // wait 2 seconds
+        response = await openai.responses.retrieve(response.id);
+      }
 
       return {
         content: [
