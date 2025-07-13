@@ -45,7 +45,7 @@ server.tool(
 
       while (response.status === "queued" || response.status === "in_progress") {
         console.log("Current status: " + response.status);
-        await new Promise(resolve => setTimeout(resolve, 2000)); // wait 2 seconds
+        await new Promise(resolve => setTimeout(resolve, 500)); // wait 0.5 seconds
         response = await openai.responses.retrieve(response.id);
       }
 
