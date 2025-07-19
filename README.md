@@ -24,7 +24,7 @@ $ claude mcp add o3 -s user \
 
 json:
 
-```json
+```jsonc
 {
   "mcpServers": {
     "o3-search": {
@@ -71,7 +71,7 @@ $ claude mcp add o3 -s user \
 
 json:
 
-```json
+```jsonc
 {
   "mcpServers": {
     "o3-search": {
