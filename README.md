@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/yoshiko-pg-o3-search-mcp-badge.png)](https://mseep.ai/app/yoshiko-pg-o3-search-mcp)
+
 <p align="center">
 <a href="https://glama.ai/mcp/servers/@yoshiko-pg/o3-search-mcp">
   <img width="380" height="200" src="https://glama.ai/mcp/servers/@yoshiko-pg/o3-search-mcp/badge" alt="o3-search MCP server" />
