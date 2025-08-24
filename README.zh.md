@@ -1,4 +1,4 @@
-# o3-search-mcp
+# o3-search-mcp (gpt-5, o4-mini 支持)
 
 <div align="center">
   <p><a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | 简体中文 | <a href="./README.ko.md">한국어</a></p>
@@ -8,8 +8,8 @@
 </div>
 
 
-一个MCP服务器，可以使用OpenAI的o3模型及其强大的Web搜索功能。
-通过将其注册到任何AI编码代理，该代理可以自主地与o3模型协商，以解决复杂的问题。
+一个MCP服务器，可以使用OpenAI的高端模型及其强大的Web搜索功能。
+通过将其注册到任何AI编码代理，该代理可以自主地与OpenAI模型协商，以解决复杂的问题。
 
 <table>
 	<tr>
@@ -27,6 +27,8 @@
 </table>
 
 ## 使用案例
+
+（虽然为了与MCP名称匹配而称为o3，但您可以通过env指定gpt-5或o4-mini作为要使用的模型）
 
 ### 🐛 调试卡住时
 
@@ -71,6 +73,7 @@ Claude Code:
 ```sh
 $ claude mcp add o3 \
 	-s user \  # 省略此行将在项目范围内安装
+	-e OPENAI_MODEL=o3 \ # o4-mini, gpt-5 也可用
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
@@ -89,6 +92,8 @@ json:
       "args": ["o3-search-mcp"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
+        // 可选: o3, o4-mini, gpt-5 (默认: o3)
+        "OPENAI_MODEL": "o3",
         // 可选: low, medium, high (默认: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
@@ -118,7 +123,9 @@ Claude Code:
 ```sh
 $ claude mcp add o3 \
 	-s user \  # 省略此行将在项目范围内安装
+	-e OPENAI_MODEL=o3 \ # o4-mini, gpt-5 也可用
 	-e OPENAI_API_KEY=your-api-key \
+	-e OPENAI_MODEL=o3 \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
 	-e OPENAI_API_TIMEOUT=60000 \
@@ -136,6 +143,8 @@ json:
       "args": ["/path/to/o3-search-mcp/build/index.js"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
+        // 可选: o3, o4-mini, gpt-5 (默认: o3)
+        "OPENAI_MODEL": "o3",
         // 可选: low, medium, high (默认: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
@@ -154,6 +163,7 @@ json:
 | 环境变量名 | 选项 | 默认值 | 说明 |
 | --- | --- | --- | --- |
 | `OPENAI_API_KEY` | 必需 | - | OpenAI API 密钥 |
+| `OPENAI_MODEL` | 可选 | `o3` | 使用的模型<br>值: `o3`, `o4-mini`, `gpt-5` |
 | `SEARCH_CONTEXT_SIZE` | 可选 | `medium` | 控制搜索上下文大小<br>值: `low`, `medium`, `high` |
 | `REASONING_EFFORT` | 可选 | `medium` | 控制推理努力级别<br>值: `low`, `medium`, `high` |
 | `OPENAI_API_TIMEOUT` | 可选 | `60000` | API请求超时（毫秒）<br>示例: `120000` 为2分钟 |

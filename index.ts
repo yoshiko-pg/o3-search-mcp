@@ -13,6 +13,7 @@ const server = new McpServer({
 // Configuration from environment variables
 const config = {
   apiKey: process.env.OPENAI_API_KEY,
+  model: process.env.OPENAI_MODEL || "o3",
   maxRetries: parseInt(process.env.OPENAI_MAX_RETRIES || "3"),
   timeout: parseInt(process.env.OPENAI_API_TIMEOUT || "60000"),
   searchContextSize: (process.env.SEARCH_CONTEXT_SIZE || "medium") as
@@ -46,7 +47,7 @@ server.tool(
   async ({ input }) => {
     try {
       const response = await openai.responses.create({
-        model: "o3",
+        model: config.model,
         input,
         tools: [
           {

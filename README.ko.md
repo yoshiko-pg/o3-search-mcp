@@ -1,4 +1,4 @@
-# o3-search-mcp
+# o3-search-mcp (gpt-5, o4-mini 지원)
 
 <div align="center">
   <p><a href="./README.md">English</a> | <a href="./README.ja.md">日本語</a> | <a href="./README.zh.md">简体中文</a> | 한국어</p>
@@ -8,8 +8,8 @@
 </div>
 
 
-OpenAI의 o3 모델과 강력한 웹 검색 기능을 사용할 수 있게 해주는 MCP 서버입니다.
-임의의 AI 코딩 에이전트에 등록하면 코딩 에이전트가 자율적으로 o3 모델과 상의하여 복잡한 문제를 해결할 수 있습니다.
+OpenAI의 고급 모델과 강력한 웹 검색 기능을 사용할 수 있게 해주는 MCP 서버입니다.
+임의의 AI 코딩 에이전트에 등록하면 코딩 에이전트가 자율적으로 OpenAI 모델과 상의하여 복잡한 문제를 해결할 수 있습니다.
 
 <table>
 	<tr>
@@ -27,6 +27,8 @@ OpenAI의 o3 모델과 강력한 웹 검색 기능을 사용할 수 있게 해�
 </table>
 
 ## 사용 예
+
+（MCP 이름에 맞춰 o3라고 부르지만, env로 gpt-5나 o4-mini를 사용할 모델로 지정할 수 있습니다）
 
 ### 🐛 디버깅에 막혔을 때
 
@@ -71,6 +73,7 @@ Claude Code:
 ```sh
 $ claude mcp add o3 \
 	-s user \  # 이 줄을 빼면 project scope로 설치됩니다
+	-e OPENAI_MODEL=o3 \ # o4-mini, gpt-5도 사용 가능
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
@@ -89,6 +92,8 @@ json:
       "args": ["o3-search-mcp"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
+        // 옵션: o3, o4-mini, gpt-5 (기본값: o3)
+        "OPENAI_MODEL": "o3",
         // 옵션: low, medium, high (기본값: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
@@ -118,7 +123,9 @@ Claude Code:
 ```sh
 $ claude mcp add o3 \
 	-s user \  # 이 줄을 빼면 project scope로 설치됩니다
+	-e OPENAI_MODEL=o3 \ # o4-mini, gpt-5도 사용 가능
 	-e OPENAI_API_KEY=your-api-key \
+	-e OPENAI_MODEL=o3 \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
 	-e OPENAI_API_TIMEOUT=60000 \
@@ -136,6 +143,8 @@ json:
       "args": ["/path/to/o3-search-mcp/build/index.js"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
+        // 옵션: o3, o4-mini, gpt-5 (기본값: o3)
+        "OPENAI_MODEL": "o3",
         // 옵션: low, medium, high (기본값: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
@@ -154,6 +163,7 @@ json:
 | 환경 변수 이름 | 옵션 | 기본값 | 설명 |
 | --- | --- | --- | --- |
 | `OPENAI_API_KEY` | 필수 | - | OpenAI API 키 |
+| `OPENAI_MODEL` | 선택 | `o3` | 사용할 모델<br>값: `o3`, `o4-mini`, `gpt-5` |
 | `SEARCH_CONTEXT_SIZE` | 선택 | `medium` | 검색 컨텍스트 크기 제어<br>값: `low`, `medium`, `high` |
 | `REASONING_EFFORT` | 선택 | `medium` | 추론 노력 수준 제어<br>값: `low`, `medium`, `high` |
 | `OPENAI_API_TIMEOUT` | 선택 | `60000` | 밀리초 단위의 API 요청 시간 초과<br>예: `120000`은 2분 |

@@ -1,4 +1,4 @@
-# o3-search-mcp
+# o3-search-mcp (gpt-5, o4-mini support)
 
 <div align="center">
   <p>English | <a href="./README.ja.md">日本語</a> | <a href="./README.zh.md">简体中文</a> | <a href="./README.ko.md">한국어</a></p>
@@ -8,8 +8,8 @@
 </div>
 
 
-MCP server that enables the use of OpenAI's o3 model and its powerful web search capabilities.
-By registering it with any AI coding agent, the agent can autonomously consult with the o3 model to solve complex problems.
+MCP server that enables the use of OpenAI's high-end models and their powerful web search capabilities.
+By registering it with any AI coding agent, the agent can autonomously consult with OpenAI models to solve complex problems.
 
 <table>
 	<tr>
@@ -28,6 +28,8 @@ By registering it with any AI coding agent, the agent can autonomously consult w
 
 
 ## Use Cases
+
+(Although called o3 to match the MCP name, you can specify gpt-5 or o4-mini via env for the model to use)
 
 ### 🐛 When you're stuck debugging
 
@@ -72,6 +74,7 @@ Claude Code:
 ```sh
 $ claude mcp add o3 \
 	-s user \  # If you omit this line, it will be installed in the project scope
+	-e OPENAI_MODEL=o3 \ # o4-mini, gpt-5 also available
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
@@ -90,6 +93,8 @@ json:
       "args": ["o3-search-mcp"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
+        // Optional: o3, o4-mini, gpt-5 (default: o3)
+        "OPENAI_MODEL": "o3",
         // Optional: low, medium, high (default: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
@@ -119,7 +124,9 @@ Claude Code:
 ```sh
 $ claude mcp add o3 \
 	-s user \  # If you omit this line, it will be installed in the project scope
+	-e OPENAI_MODEL=o3 \ # o4-mini, gpt-5 also available
 	-e OPENAI_API_KEY=your-api-key \
+	-e OPENAI_MODEL=o3 \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
 	-e OPENAI_API_TIMEOUT=60000 \
@@ -137,6 +144,8 @@ json:
       "args": ["/path/to/o3-search-mcp/build/index.js"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
+        // Optional: o3, o4-mini, gpt-5 (default: o3)
+        "OPENAI_MODEL": "o3",
         // Optional: low, medium, high (default: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
@@ -155,6 +164,7 @@ json:
 | Environment Variable | Options | Default | Description |
 | --- | --- | --- | --- |
 | `OPENAI_API_KEY` | Required | - | OpenAI API Key |
+| `OPENAI_MODEL` | Optional | `o3` | Model to use<br>Values: `o3`, `o4-mini`, `gpt-5` |
 | `SEARCH_CONTEXT_SIZE` | Optional | `medium` | Controls the search context size<br>Values: `low`, `medium`, `high` |
 | `REASONING_EFFORT` | Optional | `medium` | Controls the reasoning effort level<br>Values: `low`, `medium`, `high` |
 | `OPENAI_API_TIMEOUT` | Optional | `60000` | API request timeout in milliseconds<br>Example: `120000` for 2 minutes |

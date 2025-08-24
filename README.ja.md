@@ -1,4 +1,4 @@
-# o3-search-mcp
+# o3-search-mcp (gpt-5, o4-mini 対応)
 
 <div align="center">
   <p><a href="./README.md">English</a> | 日本語 | <a href="./README.zh.md">简体中文</a> | <a href="./README.ko.md">한국어</a></p>
@@ -8,8 +8,8 @@
 </div>
 
 
-OpenAIのo3モデルとその強力なWeb検索機能を使えるようにするMCPサーバー。  
-任意のAIコーディングエージェントに登録することで、コーディングエージェントが自律的にo3モデルと相談し、複雑な問題を解決できるようになります。
+OpenAIのハイエンドモデルとその強力なWeb検索機能を使えるようにするMCPサーバー。  
+任意のAIコーディングエージェントに登録することで、コーディングエージェントが自律的にOpenAIのモデルと相談し、複雑な問題を解決できるようになります。
 
 <table>
 	<tr>
@@ -27,6 +27,8 @@ OpenAIのo3モデルとその強力なWeb検索機能を使えるようにする
 </table>
 
 ## 使用例
+
+（MCP名にあわせてo3と呼んでいますが、利用するモデルはenvでgpt-5やo4-miniも指定可能です）
 
 ### 🐛 デバッグで詰まった場合
 
@@ -69,8 +71,9 @@ o3のWeb検索ではGitHubのissueやStack Overflowなど広範囲に問題を�
 Claude Code:
 
 ```sh
-$ claude mcp add o3 \
+$ claude mcp add o3 \ 
 	-s user \  # この行を抜くと project scope でインストールされます
+	-e OPENAI_MODEL=o3 \ # o4-mini, gpt-5 も指定可能
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
@@ -89,6 +92,8 @@ json:
       "args": ["o3-search-mcp"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
+        // オプション: o3, o4-mini, gpt-5 (デフォルト: o3)
+        "OPENAI_MODEL": "o3",
         // オプション: low, medium, high (デフォルト: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
@@ -118,7 +123,9 @@ Claude Code:
 ```sh
 $ claude mcp add o3 \
 	-s user \  # この行を抜くと project scope でインストールされます
+	-e OPENAI_MODEL=o3 \ # o4-mini, gpt-5 も指定可能
 	-e OPENAI_API_KEY=your-api-key \
+	-e OPENAI_MODEL=o3 \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
 	-e OPENAI_API_TIMEOUT=60000 \
@@ -136,6 +143,8 @@ json:
       "args": ["/path/to/o3-search-mcp/build/index.js"],
       "env": {
         "OPENAI_API_KEY": "your-api-key",
+        // オプション: o3, o4-mini, gpt-5 (デフォルト: o3)
+        "OPENAI_MODEL": "o3",
         // オプション: low, medium, high (デフォルト: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
@@ -154,6 +163,7 @@ json:
 | 環境変数名 | オプション | デフォルト | 説明 |
 | --- | --- | --- | --- |
 | `OPENAI_API_KEY` | 必須 | - | OpenAI API Key |
+| `OPENAI_MODEL` | 任意 | `o3` | 使用するモデル<br>値: `o3`, `o4-mini`, `gpt-5` |
 | `SEARCH_CONTEXT_SIZE` | 任意 | `medium` | 検索コンテキストサイズを制御<br>値: `low`, `medium`, `high` |
 | `REASONING_EFFORT` | 任意 | `medium` | 推論努力レベルを制御<br>値: `low`, `medium`, `high` |
 | `OPENAI_API_TIMEOUT` | 任意 | `60000` | ミリ秒単位のAPIリクエストタイムアウト<br>例: `120000` で2分 |
