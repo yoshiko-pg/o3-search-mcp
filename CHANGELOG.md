@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.9] - 2025-08-24
+
+### Changed
+
+- Increased default OPENAI_API_TIMEOUT from 60000ms (1 minute) to 300000ms (5 minutes)
+
 ## [0.0.8] - 2025-08-24
 
 ### Added
@@ -71,7 +77,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - @wildgeece96 for adding configurable retry and timeout for OpenAI API (#6)
 - @punkpeye for adding MCP server badge (#1)
 
-[Unreleased]: https://github.com/yoshiko-pg/o3-search-mcp/compare/v0.0.8...HEAD
+[Unreleased]: https://github.com/yoshiko-pg/o3-search-mcp/compare/v0.0.9...HEAD
+[0.0.9]: https://github.com/yoshiko-pg/o3-search-mcp/compare/v0.0.8...v0.0.9
 [0.0.8]: https://github.com/yoshiko-pg/o3-search-mcp/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/yoshiko-pg/o3-search-mcp/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/yoshiko-pg/o3-search-mcp/compare/v0.0.5...v0.0.6

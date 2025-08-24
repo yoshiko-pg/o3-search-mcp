@@ -1,7 +1,7 @@
 {
   "name": "o3-search-mcp",
   "description": "MCP server that enables AI agents to perform intelligent web searches using OpenAI's o3 model with natural language queries",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "build/index.js",
   "bin": {
     "o3-search-mcp": "./build/index.js"
