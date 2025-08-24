@@ -77,7 +77,7 @@ $ claude mcp add o3 \
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
-	-e OPENAI_API_TIMEOUT=60000 \
+	-e OPENAI_API_TIMEOUT=300000 \
 	-e OPENAI_MAX_RETRIES=3 \
 	-- npx o3-search-mcp
 ```
@@ -97,8 +97,8 @@ json:
         // オプション: low, medium, high (デフォルト: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
-        // オプション: ミリ秒単位のAPIタイムアウト (デフォルト: 60000)
-        "OPENAI_API_TIMEOUT": "60000",
+        // オプション: ミリ秒単位のAPIタイムアウト (デフォルト: 300000)
+        "OPENAI_API_TIMEOUT": "300000",
         // オプション: 最大リトライ回数 (デフォルト: 3)
         "OPENAI_MAX_RETRIES": "3"
       }
@@ -128,7 +128,7 @@ $ claude mcp add o3 \
 	-e OPENAI_MODEL=o3 \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
-	-e OPENAI_API_TIMEOUT=60000 \
+	-e OPENAI_API_TIMEOUT=300000 \
 	-e OPENAI_MAX_RETRIES=3 \
 	-- node /path/to/o3-search-mcp/build/index.js
 ```
@@ -148,8 +148,8 @@ json:
         // オプション: low, medium, high (デフォルト: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
-        // オプション: ミリ秒単位のAPIタイムアウト (デフォルト: 60000)
-        "OPENAI_API_TIMEOUT": "60000",
+        // オプション: ミリ秒単位のAPIタイムアウト (デフォルト: 300000)
+        "OPENAI_API_TIMEOUT": "300000",
         // オプション: 最大リトライ回数 (デフォルト: 3)
         "OPENAI_MAX_RETRIES": "3"
       }
@@ -166,7 +166,7 @@ json:
 | `OPENAI_MODEL` | 任意 | `o3` | 使用するモデル<br>値: `o3`, `o4-mini`, `gpt-5` |
 | `SEARCH_CONTEXT_SIZE` | 任意 | `medium` | 検索コンテキストサイズを制御<br>値: `low`, `medium`, `high` |
 | `REASONING_EFFORT` | 任意 | `medium` | 推論努力レベルを制御<br>値: `low`, `medium`, `high` |
-| `OPENAI_API_TIMEOUT` | 任意 | `60000` | ミリ秒単位のAPIリクエストタイムアウト<br>例: `120000` で2分 |
+| `OPENAI_API_TIMEOUT` | 任意 | `300000` | ミリ秒単位のAPIリクエストタイムアウト<br>例: `300000` で5分 |
 | `OPENAI_MAX_RETRIES` | 任意 | `3` | 失敗したリクエストの最大リトライ回数<br>SDKはレート制限（429）、サーバーエラー（5xx）、接続エラーで自動的にリトライします |
 
 ## 注意点

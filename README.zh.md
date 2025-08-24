@@ -77,7 +77,7 @@ $ claude mcp add o3 \
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
-	-e OPENAI_API_TIMEOUT=60000 \
+	-e OPENAI_API_TIMEOUT=300000 \
 	-e OPENAI_MAX_RETRIES=3 \
 	-- npx o3-search-mcp
 ```
@@ -97,8 +97,8 @@ json:
         // 可选: low, medium, high (默认: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
-        // 可选: API超时（毫秒） (默认: 60000)
-        "OPENAI_API_TIMEOUT": "60000",
+        // 可选: API超时（毫秒） (默认: 300000)
+        "OPENAI_API_TIMEOUT": "300000",
         // 可选: 最大重试次数 (默认: 3)
         "OPENAI_MAX_RETRIES": "3"
       }
@@ -128,7 +128,7 @@ $ claude mcp add o3 \
 	-e OPENAI_MODEL=o3 \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
-	-e OPENAI_API_TIMEOUT=60000 \
+	-e OPENAI_API_TIMEOUT=300000 \
 	-e OPENAI_MAX_RETRIES=3 \
 	-- node /path/to/o3-search-mcp/build/index.js
 ```
@@ -148,8 +148,8 @@ json:
         // 可选: low, medium, high (默认: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
-        // 可选: API超时（毫秒） (默认: 60000)
-        "OPENAI_API_TIMEOUT": "60000",
+        // 可选: API超时（毫秒） (默认: 300000)
+        "OPENAI_API_TIMEOUT": "300000",
         // 可选: 最大重试次数 (默认: 3)
         "OPENAI_MAX_RETRIES": "3"
       }
@@ -166,7 +166,7 @@ json:
 | `OPENAI_MODEL` | 可选 | `o3` | 使用的模型<br>值: `o3`, `o4-mini`, `gpt-5` |
 | `SEARCH_CONTEXT_SIZE` | 可选 | `medium` | 控制搜索上下文大小<br>值: `low`, `medium`, `high` |
 | `REASONING_EFFORT` | 可选 | `medium` | 控制推理努力级别<br>值: `low`, `medium`, `high` |
-| `OPENAI_API_TIMEOUT` | 可选 | `60000` | API请求超时（毫秒）<br>示例: `120000` 为2分钟 |
+| `OPENAI_API_TIMEOUT` | 可选 | `300000` | API请求超时（毫秒）<br>示例: `300000` 为5分钟 |
 | `OPENAI_MAX_RETRIES` | 可选 | `3` | 失败请求的最大重试次数<br>SDK会在速率限制（429）、服务器错误（5xx）和连接错误时自动重试 |
 
 ## 注意事项

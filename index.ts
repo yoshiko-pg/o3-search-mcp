@@ -15,7 +15,7 @@ const config = {
   apiKey: process.env.OPENAI_API_KEY,
   model: process.env.OPENAI_MODEL || "o3",
   maxRetries: parseInt(process.env.OPENAI_MAX_RETRIES || "3"),
-  timeout: parseInt(process.env.OPENAI_API_TIMEOUT || "60000"),
+  timeout: parseInt(process.env.OPENAI_API_TIMEOUT || "300000"),
   searchContextSize: (process.env.SEARCH_CONTEXT_SIZE || "medium") as
     | "low"
     | "medium"

@@ -78,7 +78,7 @@ $ claude mcp add o3 \
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
-	-e OPENAI_API_TIMEOUT=60000 \
+	-e OPENAI_API_TIMEOUT=300000 \
 	-e OPENAI_MAX_RETRIES=3 \
 	-- npx o3-search-mcp
 ```
@@ -98,8 +98,8 @@ json:
         // Optional: low, medium, high (default: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
-        // Optional: API timeout in milliseconds (default: 60000)
-        "OPENAI_API_TIMEOUT": "60000",
+        // Optional: API timeout in milliseconds (default: 300000)
+        "OPENAI_API_TIMEOUT": "300000",
         // Optional: Maximum number of retries (default: 3)
         "OPENAI_MAX_RETRIES": "3"
       }
@@ -129,7 +129,7 @@ $ claude mcp add o3 \
 	-e OPENAI_MODEL=o3 \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
-	-e OPENAI_API_TIMEOUT=60000 \
+	-e OPENAI_API_TIMEOUT=300000 \
 	-e OPENAI_MAX_RETRIES=3 \
 	-- node /path/to/o3-search-mcp/build/index.js
 ```
@@ -149,8 +149,8 @@ json:
         // Optional: low, medium, high (default: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
-        // Optional: API timeout in milliseconds (default: 60000)
-        "OPENAI_API_TIMEOUT": "60000",
+        // Optional: API timeout in milliseconds (default: 300000)
+        "OPENAI_API_TIMEOUT": "300000",
         // Optional: Maximum number of retries (default: 3)
         "OPENAI_MAX_RETRIES": "3"
       }
@@ -167,7 +167,7 @@ json:
 | `OPENAI_MODEL` | Optional | `o3` | Model to use<br>Values: `o3`, `o4-mini`, `gpt-5` |
 | `SEARCH_CONTEXT_SIZE` | Optional | `medium` | Controls the search context size<br>Values: `low`, `medium`, `high` |
 | `REASONING_EFFORT` | Optional | `medium` | Controls the reasoning effort level<br>Values: `low`, `medium`, `high` |
-| `OPENAI_API_TIMEOUT` | Optional | `60000` | API request timeout in milliseconds<br>Example: `120000` for 2 minutes |
+| `OPENAI_API_TIMEOUT` | Optional | `300000` | API request timeout in milliseconds<br>Example: `300000` for 5 minutes |
 | `OPENAI_MAX_RETRIES` | Optional | `3` | Maximum number of retries for failed requests<br>The SDK automatically retries on rate limits (429), server errors (5xx), and connection errors |
 
 ## Notes

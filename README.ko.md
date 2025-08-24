@@ -77,7 +77,7 @@ $ claude mcp add o3 \
 	-e OPENAI_API_KEY=your-api-key \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
-	-e OPENAI_API_TIMEOUT=60000 \
+	-e OPENAI_API_TIMEOUT=300000 \
 	-e OPENAI_MAX_RETRIES=3 \
 	-- npx o3-search-mcp
 ```
@@ -97,8 +97,8 @@ json:
         // 옵션: low, medium, high (기본값: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
-        // 옵션: 밀리초 단위의 API 시간 초과 (기본값: 60000)
-        "OPENAI_API_TIMEOUT": "60000",
+        // 옵션: 밀리초 단위의 API 시간 초과 (기본값: 300000)
+        "OPENAI_API_TIMEOUT": "300000",
         // 옵션: 최대 재시도 횟수 (기본값: 3)
         "OPENAI_MAX_RETRIES": "3"
       }
@@ -128,7 +128,7 @@ $ claude mcp add o3 \
 	-e OPENAI_MODEL=o3 \
 	-e SEARCH_CONTEXT_SIZE=medium \
 	-e REASONING_EFFORT=medium \
-	-e OPENAI_API_TIMEOUT=60000 \
+	-e OPENAI_API_TIMEOUT=300000 \
 	-e OPENAI_MAX_RETRIES=3 \
 	-- node /path/to/o3-search-mcp/build/index.js
 ```
@@ -148,8 +148,8 @@ json:
         // 옵션: low, medium, high (기본값: medium)
         "SEARCH_CONTEXT_SIZE": "medium",
         "REASONING_EFFORT": "medium",
-        // 옵션: 밀리초 단위의 API 시간 초과 (기본값: 60000)
-        "OPENAI_API_TIMEOUT": "60000",
+        // 옵션: 밀리초 단위의 API 시간 초과 (기본값: 300000)
+        "OPENAI_API_TIMEOUT": "300000",
         // 옵션: 최대 재시도 횟수 (기본값: 3)
         "OPENAI_MAX_RETRIES": "3"
       }
@@ -166,7 +166,7 @@ json:
 | `OPENAI_MODEL` | 선택 | `o3` | 사용할 모델<br>값: `o3`, `o4-mini`, `gpt-5` |
 | `SEARCH_CONTEXT_SIZE` | 선택 | `medium` | 검색 컨텍스트 크기 제어<br>값: `low`, `medium`, `high` |
 | `REASONING_EFFORT` | 선택 | `medium` | 추론 노력 수준 제어<br>값: `low`, `medium`, `high` |
-| `OPENAI_API_TIMEOUT` | 선택 | `60000` | 밀리초 단위의 API 요청 시간 초과<br>예: `120000`은 2분 |
+| `OPENAI_API_TIMEOUT` | 선택 | `300000` | 밀리초 단위의 API 요청 시간 초과<br>예: `300000`은 5분 |
 | `OPENAI_MAX_RETRIES` | 선택 | `3` | 실패한 요청의 최대 재시도 횟수<br>SDK는 속도 제한(429), 서버 오류(5xx), 연결 오류 시 자동으로 재시도합니다 |
 
 ## 주의 사항
